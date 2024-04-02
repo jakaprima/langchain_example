@@ -22,33 +22,80 @@ from langchain_openai import ChatOpenAI
 from langchain import hub
 from langchain.agents import create_openai_functions_agent
 from langchain.agents import AgentExecutor
+from langchain.document_loaders import PyPDFLoader
+
+from langchain.vectorstores import Pinecone as LangChainPinecone
+from langchain_pinecone import PineconeVectorStore
+
+from langchain.embeddings.openai import OpenAIEmbeddings
+from pinecone import Pinecone, ServerlessSpec
+from langchain.chains.question_answering import load_qa_chain
+from langchain.llms import OpenAI
+from langchain.chat_models import ChatOpenAI
+from langchain.chains import RetrievalQA
+from langchain.schema import (
+    SystemMessage,
+    HumanMessage,
+    AIMessage
+)
+import traceback
 
 # Load environment variables from .env file
 load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")  # Corrected variable name
+PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 
 
 class LangChainModule(object):
     def __init__(self):
         self.llm = ChatOpenAI(openai_api_key=OPENAI_API_KEY)  # Using the correct variable name
 
-    def _get_vector_data(self):
-        # load data yang akan di index dengan beautifulsoup
-        loader = WebBaseLoader("https://docs.smith.langchain.com/user_guide")
-        docs = loader.load()
+    def _get_vector_data(self, docs=None, question=None):
+        if docs is None:
+            # load data yang akan di index dengan beautifulsoup
+            loader = WebBaseLoader("https://docs.smith.langchain.com/user_guide")
+            docs = loader.load()
 
-        # selanjutnya butuh index ke vectorstore, component yang dibutuhkan
-        # embedding model & vectorstore
-        # gunakan class ini untuk embedding(sematkan pelengkap) model untuk memberikan document ke vectorstore
+            # selanjutnya butuh index ke vectorstore, component yang dibutuhkan
+            # embedding model & vectorstore
+            # gunakan class ini untuk embedding(sematkan pelengkap) model untuk memberikan document ke vectorstore
+            embeddings = OpenAIEmbeddings()
+
+            # gunakan simple local vectorstore, FAISS
+            # Facebook AI Similarity Search (Faiss)
+            # build our index
+            text_splitter = RecursiveCharacterTextSplitter()
+            documents = text_splitter.split_documents(docs)
+            faiss_index = FAISS.from_documents(documents, embeddings)
+        else:
+            faiss_index = FAISS.from_documents(docs, OpenAIEmbeddings())
+            docs = faiss_index.similarity_search(question, k=2)
+            # for doc in docs:
+            #     print(str(doc.metadata["page"]) + ":", doc.page_content[:300])
+        return faiss_index
+
+    def _get_vector_data_uud_by_faiss(self, texts):
         embeddings = OpenAIEmbeddings()
-
-        # gunakan simple local vectorstore, FAISS
-        # Facebook AI Similarity Search (Faiss)
-        # build our index
-        text_splitter = RecursiveCharacterTextSplitter()
-        documents = text_splitter.split_documents(docs)
-        vector = FAISS.from_documents(documents, embeddings)
+        vector = FAISS.from_documents(texts, embeddings)
         return vector
+
+    def _get_vector_data_uud_by_pinecone(self, texts, question):
+        embeddings = OpenAIEmbeddings()
+        pinecone_index = "chatbotjaka"
+
+        pineconeInstance = Pinecone(api_key=PINECONE_API_KEY)
+        index = pineconeInstance.Index(pinecone_index)
+        space_name = "my_space"
+
+        # Create the Pinecone vector store
+        vectorstore = PineconeVectorStore.from_documents(
+            texts, embeddings, index_name=pinecone_index, pinecone_api_key=PINECONE_API_KEY
+        )
+        print("VECTOR STORE", vectorstore)
+
+        # Perform similarity search
+        similar_documents = vectorstore.similarity_search(question)
+        return vectorstore
 
     def invoke(self, question):
         # Invoke the language model with a prompt
@@ -220,6 +267,62 @@ class LangChainModule(object):
         # bisa ganti bahasa
         # chat_prompt.format_messages(input_language="English", output_language="French", text="I love programming.")
 
+    def scan_in_pdf_with_pinecone(self):
+        # Define paths (replace with your actual file paths)
+        default_question = "ada di bab berapa tentang HAL KEUANGAN"
+        print(f"QUESTION: (default: {default_question})")
+        question = input()
+        if question == "":
+            question = default_question
+
+        print(os.getcwd())
+        pdf_loader = PyPDFLoader(os.getcwd() + "/UUD45_ASLI.pdf")
+        data = pdf_loader.load()
+        text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+        texts = text_splitter.split_documents(data)
+        prompt = ChatPromptTemplate.from_template("""Answer the following question based only on the provided context:
+
+                <context>
+                {context}
+                </context>
+
+                Question: {input}""")
+        document_chain = create_stuff_documents_chain(self.llm, prompt)
+        index = self._get_vector_data_uud_by_pinecone(texts=texts, question=question)
+        retriever = index.as_retriever()
+        retrieval_chain = create_retrieval_chain(retriever, document_chain)
+        response = retrieval_chain.invoke({"input": "SISTEM PEMERINTAHAN NEGARA?"})
+        print("ANSWER:", response)
+        return response
+
+    def scan_in_pdf_with_faiss(self):
+        # Define paths (replace with your actual file paths)
+        default_question = "ada di bab berapa tentang HAL KEUANGAN"
+        print(f"QUESTION: (default: {default_question})")
+        question = input()
+        if question == "":
+            question = default_question
+
+        print(os.getcwd())
+        pdf_loader = PyPDFLoader(os.getcwd() + "/UUD45_ASLI.pdf")
+        pages = pdf_loader.load_and_split()
+        prompt = ChatPromptTemplate.from_template("""Answer the following question based only on the provided context:
+
+                <context>
+                {context}
+                </context>
+
+                Question: {input}""")
+        document_chain = create_stuff_documents_chain(self.llm, prompt)
+        index = self._get_vector_data(docs=pages, question=question)
+        retriever = index.as_retriever()
+        retrieval_chain = create_retrieval_chain(retriever, document_chain)
+
+        # This answer should be much more accurate!
+        response = retrieval_chain.invoke({"input": question})
+        print("ANSWER:", response)
+        return response
+
 
 def start_app(name):
     """
@@ -236,14 +339,17 @@ def start_app(name):
             4. followup question
             5. followup question with docs
             6. agent
+            7. question answer cari di uud doc pdf dengan FAISS
+            8. question answer cari di uud doc pdf dengan PINECONE
             else stop
             
             """))
             if answer == 1:
                 langchainInstance.invoke("how can langsmith help with testing?")
             elif answer == 2:
-                langchainInstance.prompt_invoke(prompt_instruction= "You are world class technical documentation writer.",
-                                                question="how can langsmith help with testing?")
+                langchainInstance.prompt_invoke(
+                    prompt_instruction="You are world class technical documentation writer.",
+                    question="how can langsmith help with testing?")
             elif answer == 3:
                 langchainInstance.case_retrieval()
             elif answer == 4:
@@ -252,12 +358,16 @@ def start_app(name):
                 langchainInstance.follow_up_question_with_doc()
             elif answer == 6:
                 langchainInstance.agent()
+            elif answer == 7:
+                langchainInstance.scan_in_pdf_with_faiss()
+            elif answer == 8:
+                langchainInstance.scan_in_pdf_with_pinecone()
             else:
                 print("stop")
                 break
-    except:
-        print("stop")
-
+    except Exception as e:
+        print("TRACEBACK", traceback.format_exc())
+        print("stop", e)
 
     # #  ------------------------------------------------------------------------------------------ STEP 5 AGENT
 
