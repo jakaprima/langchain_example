@@ -8,6 +8,11 @@ TAVILY_API_KEY="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"
 PINECONE_API_KEY="475b7f13-eab6-4d24-8294-85d32be5006e"
 ```
 
+# install requirements.txt
+```bash
+pip install requirements.txt
+```
+
 # RUN
 ```bash
 python main.py
