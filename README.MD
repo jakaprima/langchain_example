@@ -18,5 +18,7 @@ pip install requirements.txt
 python main.py
 ```
 
-
-
+# RUN CHAT APP
+```bash
+streamlit run app.py
+```
