@@ -1,0 +1,181 @@
+[
+  {
+    "kategori": "Hukum Umum dan Dasar Hukum",
+    "pertanyaan": [
+      "Apa yang dimaksud dengan hukum?",
+      "Apa fungsi hukum dalam masyarakat?",
+      "Apa sumber hukum di Indonesia?",
+      "Apa perbedaan antara hukum positif dan hukum non-positif?",
+      "Apa perbedaan antara hukum pidana dan hukum perdata?",
+      "Apa perbedaan antara hukum publik dan hukum privat?",
+      "Apa yang dimaksud dengan asas hukum?",
+      "Apa yang dimaksud dengan norma hukum?",
+      "Apa yang dimaksud dengan sanksi hukum?",
+      "Bagaimana cara menegakkan hukum di Indonesia?"
+    ]
+  },
+  {
+    "kategori": "Hukum Pidana",
+    "pertanyaan": [
+      "Apa yang dimaksud dengan tindak pidana?",
+      "Apa unsur-unsur tindak pidana?",
+      "Apa perbedaan antara dolus dan culpa?",
+      "Apa saja jenis-jenis tindak pidana?",
+      "Bagaimana cara penyelesaian perkara pidana di Indonesia?",
+      "Apa yang dimaksud dengan hak asasi manusia dalam konteks hukum pidana?",
+      "Apa yang dimaksud dengan restorative justice?",
+      "Apa saja jenis-jenis hukuman pidana di Indonesia?",
+      "Bagaimana cara pelaksanaan hukuman pidana di Indonesia?",
+      "Apa yang dimaksud dengan pembebasan bersyarat?"
+    ]
+  },
+  {
+    "kategori": "Hukum Perdata",
+    "pertanyaan": [
+      "Apa yang dimaksud dengan hukum perdata?",
+      "Apa saja ruang lingkup hukum perdata?",
+      "Apa yang dimaksud dengan subjek hukum?",
+      "Apa yang dimaksud dengan objek hukum?",
+      "Apa yang dimaksud dengan perbuatan hukum?",
+      "Apa saja jenis-jenis perbuatan hukum?",
+      "Apa yang dimaksud dengan perikatan?",
+      "Apa saja jenis-jenis perikatan?",
+      "Apa yang dimaksud dengan wanprestasi?",
+      "Apa saja jenis-jenis wanprestasi?"
+    ]
+  },
+  {
+    "kategori": "Hukum Keluarga dan Hak Asasi Manusia",
+    "pertanyaan": [
+      "Apa yang dimaksud dengan hukum keluarga?",
+      "Apa saja ruang lingkup hukum keluarga?",
+      "Apa yang dimaksud dengan perkawinan?",
+      "Apa syarat-syarat sah perkawinan?",
+      "Apa hak dan kewajiban suami istri?",
+      "Apa yang dimaksud dengan perceraian?",
+      "Apa alasan-alasan perceraian?",
+      "Apa yang dimaksud dengan hak asasi manusia?",
+      "Apa saja jenis-jenis hak asasi manusia?",
+      "Bagaimana cara penegakan hak asasi manusia di Indonesia?"
+    ]
+  },
+  {
+    "kategori": "Hukum Bisnis dan Perdagangan",
+    "pertanyaan": [
+      "Apa yang dimaksud dengan hukum bisnis?",
+      "Apa saja ruang lingkup hukum bisnis?",
+      "Apa yang dimaksud dengan badan usaha?",
+      "Apa saja jenis-jenis badan usaha?",
+      "Apa yang dimaksud dengan perikatan?",
+      "Apa saja jenis-jenis perikatan?",
+      "Apa yang dimaksud dengan wanprestasi?",
+      "Apa saja jenis-jenis wanprestasi?",
+      "Apa yang dimaksud dengan hak kekayaan intelektual?",
+      "Apa saja jenis-jenis hak kekayaan intelektual?"
+    ]
+  },
+  {
+    "kategori": "Hukum Tata Negara dan Hukum Administrasi Negara",
+    "pertanyaan": [
+      "Apa yang dimaksud dengan hukum tata negara?",
+      "Apa saja ruang lingkup hukum tata negara?",
+      "Apa yang dimaksud dengan negara?",
+      "Apa unsur-unsur negara?",
+      "Apa bentuk-bentuk negara?",
+      "Apa yang dimaksud dengan sistem pemerintahan?",
+      "Apa saja jenis-jenis sistem pemerintahan?",
+      "Apa yang dimaksud dengan hukum administrasi negara?",
+      "Apa saja ruang lingkup hukum administrasi negara?",
+      "Apa yang dimaksud dengan tindakan administrasi negara?"
+    ]
+  },
+  {
+    "kategori": "Hukum Internasional",
+    "pertanyaan": [
+      "Apa yang dimaksud dengan hukum internasional?",
+      "Apa sumber-sumber hukum internasional?",
+      "Apa subjek hukum internasional?",
+      "Apa objek hukum internasional?",
+      "Apa prinsip-prinsip hukum internasional?",
+      "Apa saja jenis-jenis perjanjian internasional?",
+      "Bagaimana cara penyelesaian sengketa internasional?",
+      "Apa yang dimaksud dengan organisasi internasional?",
+      "Apa saja contoh organisasi internasional?",
+      "Apa peran Indonesia dalam hukum internasional?"
+    ]
+  },
+  {
+      "kategori": "Pembukaan UUD 1945",
+      "pertanyaan": [
+        "Jelaskan makna Pancasila yang terkandung dalam Pembukaan UUD 1945.",
+        "Bagaimana Pancasila menjadi dasar negara Indonesia?",
+        "Apa tujuan dibentuknya Negara Kesatuan Republik Indonesia menurut Pembukaan UUD 1945?",
+        "Jelaskan makna alinea kedua Pembukaan UUD 1945 tentang kemerdekaan.",
+        "Bagaimana hubungan antara Pembukaan UUD 1945 dengan batang tubuh UUD 1945?"
+      ]
+  },
+  {
+    "kategori": "Pasal-pasal UUD 1945",
+    "pertanyaan": [
+      "Jelaskan perbedaan antara MPR, DPR, DPD, dan MPR RI.",
+      "Bagaimana mekanisme amandemen UUD 1945?",
+      "Jelaskan hak dan kewajiban Presiden dan Wakil Presiden menurut UUD 1945.",
+      "Bagaimana peran Mahkamah Konstitusi dalam sistem ketatanegaraan Indonesia?",
+      "Jelaskan kewenangan dan tugas lembaga-lembaga negara menurut UUD 1945."
+    ]
+  },
+  {
+    "kategori": "Hubungan UUD 1945 dengan Realitas",
+    "pertanyaan": [
+      "Bagaimana UUD 1945 telah dilaksanakan dalam praktik di Indonesia?",
+      "Apa saja tantangan dalam implementasi UUD 1945 di Indonesia?",
+      "Bagaimana peran masyarakat dalam mengawal pelaksanaan UUD 1945?",
+      "Apa saja upaya yang dilakukan untuk memperkuat dan menegakkan UUD 1945?",
+      "Bagaimana UUD 1945 dapat menjawab berbagai isu dan tantangan kontemporer?"
+    ]
+  },
+  {
+    "kategori": "Pertanyaan Lanjutan",
+    "pertanyaan": [
+      "Bagaimana UUD 1945 mengatur tentang hak asasi manusia?",
+      "Bagaimana UUD 1945 mengatur tentang otonomi daerah?",
+      "Bagaimana UUD 1945 mengatur tentang lingkungan hidup?",
+      "Bagaimana UUD 1945 mengatur tentang ekonomi kerakyatan?",
+      "Bagaimana UUD 1945 mengatur tentang pendidikan dan kebudayaan?"
+    ]
+  },
+  {
+    "kategori": "Pertanyaan Mendalam",
+    "pertanyaan": [
+      "Bagaimana perbandingan UUD 1945 dengan konstitusi negara lain?",
+      "Bagaimana sejarah perkembangan UUD 1945?",
+      "Apa saja pemikiran dan ide-ide yang mendasari penyusunan UUD 1945?",
+      "Bagaimana peran para tokoh dalam penyusunan UUD 1945?",
+      "Bagaimana relevansi UUD 1945 di tengah perubahan zaman?"
+    ]
+  },
+  {
+    "kategori": "Pertanyaan Kritis",
+    "pertanyaan": [
+      "Apa saja kritik terhadap UUD 1945?",
+      "Bagaimana upaya untuk mengatasi kelemahan-kelemahan UUD 1945?",
+      "Apakah UUD 1945 perlu diubah kembali?",
+      "Bagaimana peran generasi muda dalam menjaga dan melestarikan UUD 1945?",
+      "Bagaimana UUD 1945 dapat mewujudkan cita-cita kemerdekaan Indonesia?"
+    ]
+  },
+  {
+    "kategori": "Sumber Informasi",
+    "sumber": [
+      "https://mpr.go.id/img/sosialisasi/file/1610334013_file_mpr.pdf",
+      "https://www.mkri.id/",
+      "https://new.dpr.go.id/",
+      "https://mpr.go.id/",
+      "https://brainly.co.id/tugas/44239854"
+    ]
+  }
+]
+
+
+
+
