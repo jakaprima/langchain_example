@@ -20,7 +20,7 @@ python langchain_quickstart.py
 
 # RUN CHAT APP
 ```bash
-streamlit run app.py
+streamlit run app_question_with_retrieval.py
 ```
 
 # RUN JUPYTER LAB
