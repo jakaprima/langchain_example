@@ -15,10 +15,15 @@ pip install requirements.txt
 
 # RUN
 ```bash
-python main.py
+python langchain_quickstart.py
 ```
 
 # RUN CHAT APP
 ```bash
 streamlit run app.py
+```
+
+# RUN JUPYTER LAB
+```bash
+jupyter lab
 ```
